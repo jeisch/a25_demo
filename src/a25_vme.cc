@@ -14,7 +14,7 @@ VMEBus::VMEBus(bool blt) {
 	}else{
 		bus_fd = VME4L_Open( VME4L_SPC_A32_D32_BLT );
 	}
-	if (bus_fd == -1) throw std::runtime_error("Error initializing the VMEBus");
+	if (bus_fd == -1) throw std::runtime_error("Error initializing the VMEBus (May need to run with sudo)");
 	// Turn on hardware byteswapping by default
 	// Byte swapping doesn't seem to be supported by the hardware...
 	if (VME4L_SwapModeSet( bus_fd, VME4L_HW_SWAP1 )) throw std::runtime_error("error setting swap mode");
