@@ -16,6 +16,7 @@ class VMEBus
 	public:
 		uint32_t readValue(uint32_t address);
 		void setValue(uint32_t address, uint32_t value);
+		void setSwapMode(int on);
 		VMEBus(bool blt = false );
 		~VMEBus( void );
 	private:

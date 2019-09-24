@@ -32,14 +32,22 @@ int main(int argc, char **argv) {
 			ss.unsetf(std::ios::basefield);
 			ss << command.substr(1);
 			ss >> addr;
-			std::cout << std::setfill('0') << std::setw(4) << std::hex << addr << " " << std::setfill('0') << std::setw(8) << std::hex << bus->readValue(base+addr) << std::endl;
+			std::cout << std::setfill('0') << std::setw(8) << std::hex << base+addr << " " << std::setfill('0') << std::setw(8) << std::hex << bus->readValue(base+addr) << std::endl;
 		}else if(command[0] == 'w') {
 			std::stringstream ss;
 			ss.unsetf(std::ios::basefield);
 			ss << command.substr(1);
 			ss >> addr >> value;
-			std::cout << std::hex << addr << " " << value << std::endl;
+			std::cout << std::hex << base+addr << " " << value << std::endl;
 			bus->setValue(base+addr,value);
+		}else if(command[0] == 's') {
+			int swapmode;
+			std::stringstream ss;
+			ss.unsetf(std::ios::basefield);
+			ss << command.substr(1);
+			ss >> swapmode;
+			bus->setSwapMode(swapmode);
+			std::cout << "Swapmode set to " << swapmode << std::endl;
 		}else{
 			std::cout << "unknown command: " << command << std::endl;
 		}
