@@ -23,7 +23,10 @@ int main(int argc, char **argv) {
 	std::cout << "'r offset' to read, 'w offset data' to write" << std::endl;
 	while(1) {
 		std::cout << "vme 0x" << std::setfill('0') << std::setw(8) << std::hex << base << " => ";
-		getline(std::cin,command);
+		if (!getline(std::cin,command)) {
+			std::cout << std::endl;
+			return 0;
+		}
 		if (command[0] == 'q') {
 			std::cout << "bye!" << std::endl;
 			return 0;
